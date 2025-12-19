@@ -7,8 +7,8 @@ layout: default
     <!-- Left column: Image and Contact Info -->
     <div class="col-md-4 text-center">
       {% include responsive-image.liquid path=page.img alt=page.firstname class="img-fluid rounded shadow mb-3" style="max-height: 300px;" %}
-      <h3 class="mt-3">{{ page.firstname }} {{ page.lastname }}</h3>
-      <h3 class="text-muted mb-2 text-center">{{ page.description }}</h3>
+      <h1 class="mt-3">{{ page.firstname }} {{ page.lastname }}</h1>
+      <p class="text-muted mb-2 text-center">{{ page.description }}</p>
 
       {% if page.email %}
       <p><i class="bi bi-envelope-fill me-2"></i><a href="mailto:{{ page.email }}">{{ page.email }}</a></p>
@@ -275,13 +275,12 @@ layout: default
     </div>
   </div>
 
-  {% unless page.email == "css@iisc.ac.in" %}
+  {% unless page.email == "css@iisc.ac.in" or page.category == "Administrator" %}
   <div class="publications">
     <h3 class="mt-5 mb-3">Publications</h3>
     {% capture debug_query %}@*[emails~={{ page.email }}]{% endcapture %}
 
     {% bibliography --query {{debug_query}} %}
   </div>
+  {% endunless %}
 </div>
-
-{% endunless %}
